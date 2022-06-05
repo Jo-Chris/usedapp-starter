@@ -1,26 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import {formatEther} from '@ethersproject/units'
+import {Mainnet, DAppProvider, useEtherBalance, useEthers, Config} from '@usedapp/core'
+import {getDefaultProvider} from 'ethers'
+import {MetamaskConnect} from "./components/MetamaskConnect";
+
+const config: Config = {
+    readOnlyChainId: Mainnet.chainId,
+}
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <DAppProvider config={config}>
+            <div className="centered">
+                <MetamaskConnect/>
+            </div>
+        </DAppProvider>
+    );
 }
 
 export default App;
